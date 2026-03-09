@@ -1,0 +1,24 @@
+{
+  "projectId": "e2e33e83",
+  "appName": "south-beach-wynwood-app",
+  "businessName": "South Beach Cuts & Wynwood Barbers",
+  "features": [
+    "booking",
+    "walk-in-queue",
+    "client-crm",
+    "sms-reminders",
+    "loyalty",
+    "analytics-full",
+    "commission-tracking",
+    "payments",
+    "location-selector"
+  ],
+  "businessInfo": {
+    "name": "South Beach Cuts & Wynwood Barbers",
+    "address": "Miami, FL",
+    "barber_count": 12,
+    "booking_system": "Vagaro"
+  },
+  "generatedDir": "/Users/dongsub/Documents/Potential/projects/hire-agent/agent-house-bot/generated/south-beach-wynwood-app-412e90d7",
+  "createdAt": "2026-03-09T16:39:58.259Z"
+}

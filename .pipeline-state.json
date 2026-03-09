@@ -1,0 +1,50 @@
+{
+  "projectDir": "/Users/dongsub/Documents/Potential/projects/hire-agent/agent-house-bot/generated/south-beach-wynwood-app-412e90d7",
+  "orderId": "d7419826-717f-4901-bb38-7fc73a9442b2",
+  "input": {
+    "app_name": "south-beach-wynwood-app",
+    "features": [
+      "booking",
+      "walk-in-queue",
+      "client-crm",
+      "sms-reminders",
+      "loyalty",
+      "analytics-full",
+      "commission-tracking",
+      "payments",
+      "location-selector"
+    ],
+    "business_info": {
+      "name": "South Beach Cuts & Wynwood Barbers",
+      "address": "Miami, FL",
+      "barber_count": 12,
+      "booking_system": "Vagaro"
+    },
+    "message": "Building PRD for Kevin's two-location Miami barbershop app — South Beach Cuts (walk-in heavy) and Wynwood Barbers (appointment heavy). 12 barbers total, 60/40 commission split, needs dual-branded booking pages, single owner dashboard, walk-in queue for South Beach, SMS reminders, visit-based loyalty, Stripe payments, and commission tracking.",
+    "stop_after": "prd"
+  },
+  "completedPhases": [
+    "init",
+    "prd",
+    "design",
+    "database",
+    "backend",
+    "frontend",
+    "integrate",
+    "test-api",
+    "test-browser"
+  ],
+  "phaseResults": [
+    "Setting up your project: Scaffolded 8 files",
+    "Generating your requirements document: Generated PRD: south-beach-wynwood-app_PRD_260309.md (12541 chars). Sent to client for review.",
+    "Designing your pages: Generated 2 HTML designs: User App, Admin Dashboard",
+    "Setting up your data storage: Generated 13 database files (entities + migration)",
+    "Building the backend: Generated 11 backend files (controllers, services, DTOs)",
+    "Building the user interface: Generated 9 frontend files (pages, components, hooks)",
+    "Wiring frontend to backend APIs: Integration included in frontend build",
+    "Running API tests: API tests skipped (test infrastructure pending)",
+    "Running browser QA tests: Browser tests skipped (test infrastructure pending)"
+  ],
+  "createdAt": "2026-03-09T16:39:29.105Z",
+  "updatedAt": "2026-03-09T16:46:58.344Z"
+}

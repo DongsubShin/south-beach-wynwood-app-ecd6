@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Beach Cuts & Wynwood Barbers | Premium Grooming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #1E293B; background-color: #FFFFFF; }
+        .bg-primary { background-color: #1E3A5F; }
+        .text-primary { color: #1E3A5F; }
+        .bg-secondary { background-color: #F59E0B; }
+        .text-secondary { color: #F59E0B; }
+        .border-secondary { border-color: #F59E0B; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold text-primary">South Beach Cuts & Wynwood Barbers</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-slate-600 hover:text-primary font-medium transition">Home</a>
+                    <a href="#services" class="text-slate-600 hover:text-primary font-medium transition">Services</a>
+                    <a href="#queue" class="text-slate-600 hover:text-primary font-medium transition">Live Queue</a>
+                    <a href="#book" class="bg-primary text-white px-5 py-2.5 rounded-md font-semibold hover:bg-opacity-90 transition shadow-sm">Book Now</a>
+                </div>
+                <div class="md:hidden">
+                    <iconify-icon icon="lucide:menu" class="text-2xl text-primary"></iconify-icon>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-secondary uppercase bg-amber-50 rounded-full">Miami's Finest Grooming</span>
+                    <h1 class="text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+                        Precision Cuts for the <span class="text-primary">Modern Gentleman</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-10 max-w-lg">
+                        Experience the perfect blend of traditional barbering and contemporary style across our South Beach and Wynwood locations.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#book" class="bg-primary text-white px-8 py-4 rounded-md font-bold text-center hover:bg-opacity-90 transition shadow-md">Schedule Appointment</a>
+                        <a href="#queue" class="bg-white border-2 border-primary text-primary px-8 py-4 rounded-md font-bold text-center hover:bg-slate-50 transition">Join Walk-in Queue</a>
+                    </div>
+                    <div class="mt-8 flex items-center gap-4">
+                        <div class="flex -space-x-2">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?u=1" alt="Barber">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?u=2" alt="Barber">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?u=3" alt="Barber">
+                        </div>
+                        <p class="text-sm text-slate-500 font-medium">12 Master Barbers Available Today</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" alt="Barbershop Interior" class="object-cover w-full h-full">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl hidden md:block">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <iconify-icon icon="lucide:clock" class="text-2xl text-green-600"></iconify-icon>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Current Wait</p>
+                                <p class="text-xl font-bold text-slate-900">15 - 20 Mins</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Services</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="p-8 bg-slate-50 rounded-lg border border-slate-100 hover:shadow-md transition">
+                    <iconify-icon icon="mdi:content-cut" class="text-4xl text-primary mb-6"></iconify-icon>
+                    <h3 class="text-xl font-bold mb-2">The Signature Cut</h3>
+                    <p class="text-slate-600 mb-4">Precision haircut, neck shave, and styling with premium products.</p>
+                    <p class="text-2xl font-bold text-primary">$45.00</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="p-8 bg-slate-50 rounded-lg border border-slate-100 hover:shadow-md transition">
+                    <iconify-icon icon="mdi:face-shimmer" class="text-4xl text-primary mb-6"></iconify-icon>
+                    <h3 class="text-xl font-bold mb-2">Hot Towel Shave</h3>
+                    <p class="text-slate-600 mb-4">Traditional straight razor shave with essential oils and hot towels.</p>
+                    <p class="text-2xl font-bold text-primary">$35.00</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="p-8 bg-slate-50 rounded-lg border border-slate-100 hover:shadow-md transition">
+                    <iconify-icon icon="mdi:mustache" class="text-4xl text-primary mb-6"></iconify-icon>
+                    <h3 class="text-xl font-bold mb-2">Beard Sculpting</h3>
+                    <p class="text-slate-600 mb-4">Detailed shaping, lining, and conditioning for the perfect beard.</p>
+                    <p class="text-2xl font-bold text-primary">$30.00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Queue Section -->
+    <section id="queue" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-primary text-white">
+                    <div>
+                        <h2 class="text-2xl font-bold">Live Walk-in Queue</h2>
+                        <p class="text-slate-300 text-sm">Real-time waitlist for South Beach location</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-500 text-white animate-pulse">
+                            LIVE
+                        </span>
+                    </div>
+                </div>
+                <div class="p-0">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider">
+                                    <th class="px-6 py-4 font-bold">Position</th>
+                                    <th class="px-6 py-4 font-bold">Client Initials</th>
+                                    <th class="px-6 py-4 font-bold">Requested Barber</th>
+                                    <th class="px-6 py-4 font-bold">Est. Wait</th>
+                                    <th class="px-6 py-4 font-bold">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="px-6 py-4 font-bold text-primary">#1</td>
+                                    <td class="px-6 py-4">M.R.</td>
+                                    <td class="px-6 py-4">Jordan (Master)</td>
+                                    <td class="px-6 py-4">Next Up</td>
+                                    <td class="px-6 py-4"><span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded">Preparing</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-bold text-slate-400">#2</td>
+                                    <td class="px-6 py-4">A.S.</td>
+                                    <td class="px-6 py-4">Any Available</td>
+                                    <td class="px-6 py-4">12 mins</td>
+                                    <td class="px-6 py-4"><span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">Waiting</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-bold text-slate-400">#3</td>
+                                    <td class="px-6 py-4">K.L.</td>
+                                    <td class="px-6 py-4">Carlos</td>
+                                    <td class="px-6 py-4">25 mins</td>
+                                    <td class="px-6 py-4"><span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">Waiting</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-50 border-t border-slate-100 text-center">
+                    <button class="bg-secondary text-slate-900 px-6 py-3 rounded-md font-bold hover:bg-opacity-90 transition shadow-sm">
+                        Join the Queue Remotely
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="book" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">Book Your Appointment</h2>
+                <p class="text-slate-500 mt-2">Select your preferred barber and time</p>
+            </div>
+            
+            <form class="space-y-8 bg-slate-50 p-8 rounded-lg border border-slate-200 shadow-sm">
+                <!-- Step 1: Location & Barber -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Select Location</label>
+                        <select class="w-full p-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                            <option>South Beach (Washington Ave)</option>
+                            <option>Wynwood (NW 2nd Ave)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Select Barber</label>
+                        <select class="w-full p-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                            <option>Any Available Barber</option>
+                            <option>Jordan (Master Barber)</option>
+                            <option>Carlos (Senior Barber)</option>
+                            <option>Alex (Stylist)</option>
+                            <option>Marcus (Senior Barber)</option>
+                            <option>Elena (Stylist)</option>
+                            <option>Victor (Master Barber)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 2: Service -->
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Select Service</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="relative flex items-center p-4 bg-white border rounded-lg cursor-pointer hover:border-primary transition">
+                            <input type="radio" name="service" class="h-4 w-4 text-primary border-slate-300 focus:ring-primary">
+                            <span class="ml-3">
+                                <span class="block text-sm font-bold text-slate-900">The Signature Cut</span>
+                                <span class="block text-xs text-slate-500">45 mins • $45</span>
+                            </span>
+                        </label>
+                        <label class="relative flex items-center p-4 bg-white border rounded-lg cursor-pointer hover:border-primary transition">
+                            <input type="radio" name="service" class="h-4 w-4 text-primary border-slate-300 focus:ring-primary">
+                            <span class="ml-3">
+                                <span class="block text-sm font-bold text-slate-900">Beard Trim & Shape</span>
+                                <span class="block text-xs text-slate-500">30 mins • $30</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 3: Date & Time -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Date</label>
+                        <input type="date" class="w-full p-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Available Times</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" class="py-2 text-xs font-bold border rounded hover:bg-primary hover:text-white transition">09:00 AM</button>
+                            <button type="button" class="py-2 text-xs font-bold border rounded hover:bg-primary hover:text-white transition">10:30 AM</button>
+                            <button type="button" class="py-2 text-xs font-bold border rounded bg-primary text-white">11:15 AM</button>
+                            <button type="button" class="py-2 text-xs font-bold border rounded hover:bg-primary hover:text-white transition">01:45 PM</button>
+                            <button type="button" class="py-2 text-xs font-bold border rounded hover:bg-primary hover:text-white transition">03:00 PM</button>
+                            <button type="button" class="py-2 text-xs font-bold border rounded hover:bg-primary hover:text-white transition">04:30 PM</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-primary text-white py-4 rounded-md font-bold text-lg hover:bg-opacity-95 transition shadow-md">
+                        Confirm Booking
+                    </button>
+                    <p class="text-center text-xs text-slate-500 mt-4">
+                        By booking, you agree to our 24-hour cancellation policy. SMS reminder will be sent.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Loyalty & App Section -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">Join Our Loyalty Program</h2>
+                    <p class="text-slate-300 text-lg mb-8">
+                        Get every 10th haircut free and earn points for every service and product purchase. Track your rewards and book faster with our mobile app.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="flex items-center gap-3 bg-white/10 p-4 rounded-lg border border-white/20">
+                            <iconify-icon icon="ion:logo-apple" class="text-3xl"></iconify-icon>
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-slate-400">Download on the</p>
+                                <p class="text-sm font-bold">App Store</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white/10 p-4 rounded-lg border border-white/20">
+                            <iconify-icon icon="ion:logo-google-playstore" class="text-3xl"></iconify-icon>
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-slate-400">Get it on</p>
+                                <p class="text-sm font-bold">Google Play</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3">
+                    <div class="bg-secondary p-8 rounded-2xl text-slate-900 shadow-xl rotate-3">
+                        <div class="flex justify-between items-start mb-8">
+                            <iconify-icon icon="lucide:scissors" class="text-4xl"></iconify-icon>
+                            <span class="text-xs font-bold tracking-widest uppercase">Loyalty Member</span>
+                        </div>
+                        <p class="text-sm font-medium mb-1">Current Balance</p>
+                        <p class="text-4xl font-bold mb-6">850 <span class="text-lg">pts</span></p>
+                        <div class="w-full bg-slate-900/10 h-2 rounded-full mb-2">
+                            <div class="bg-slate-900 h-2 rounded-full w-3/4"></div>
+                        </div>
+                        <p class="text-[10px] font-bold uppercase">150 points until next reward</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2">
+                    <span class="text-xl font-bold text-white mb-6 block">South Beach Cuts & Wynwood Barbers</span>
+                    <p class="text-slate-400 max-w-sm mb-6">
+                        Miami's premier destination for high-end grooming. We combine the artistry of traditional barbering with a modern, upscale experience.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-slate-400 hover:text-secondary transition text-2xl"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
+                        <a href="#" class="text-slate-400 hover:text-secondary transition text-2xl"><iconify-icon icon="mdi:facebook"></iconify-icon></a>
+                        <a href="#" class="text-slate-400 hover:text-secondary transition text-2xl"><iconify-icon icon="mdi:twitter"></iconify-icon></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-secondary">Locations</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li>
+                            <p class="font-bold text-white">South Beach</p>
+                            1234 Washington Ave<br>Miami Beach, FL 33139
+                        </li>
+                        <li>
+                            <p class="font-bold text-white">Wynwood</p>
+                            567 NW 2nd Ave<br>Miami, FL 33127
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase text-xs tracking-widest text-secondary">Hours</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li class="flex justify-between"><span>Mon - Fri</span> <span>9am - 8pm</span></li>
+                        <li class="flex justify-between"><span>Saturday</span> <span>9am - 6pm</span></li>
+                        <li class="flex justify-between"><span>Sunday</span> <span>10am - 4pm</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>&copy; 2023 South Beach Cuts & Wynwood Barbers. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | South Beach Cuts & Wynwood Barbers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #1E293B; background-color: #FFFFFF; }
+        .sidebar-link.active { background-color: #1E3A5F; color: white; }
+        .sidebar-link.active iconify-icon { color: #F59E0B; }
+        .section-panel { display: none; }
+        .section-panel.active { display: block; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Sidebar -->
+    <aside class="fixed inset-y-0 left-0 w-[240px] bg-slate-50 border-r border-slate-200 flex flex-col z-50">
+        <div class="p-6">
+            <h1 class="text-xl font-bold text-[#1E3A5F] leading-tight">
+                South Beach Cuts & <br>Wynwood Barbers
+            </h1>
+        </div>
+
+        <nav class="flex-1 px-4 space-y-1 mt-4">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-2 mb-2">Main</p>
+            <button onclick="switchSection('overview', this)" class="sidebar-link active w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-slate-600 hover:bg-slate-100">
+                <iconify-icon icon="lucide:layout-dashboard" class="text-lg"></iconify-icon>
+                <span class="text-sm font-medium">Overview</span>
+            </button>
+            <button onclick="switchSection('queue', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-slate-600 hover:bg-slate-100">
+                <iconify-icon icon="lucide:users-round" class="text-lg"></iconify-icon>
+                <span class="text-sm font-medium">Live Queue</span>
+            </button>
+            <button onclick="switchSection('clients', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-slate-600 hover:bg-slate-100">
+                <iconify-icon icon="lucide:contact-2" class="text-lg"></iconify-icon>
+                <span class="text-sm font-medium">Clients</span>
+            </button>
+
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-2 mt-8 mb-2">Business</p>
+            <button onclick="switchSection('analytics', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-slate-600 hover:bg-slate-100">
+                <iconify-icon icon="lucide:bar-chart-3" class="text-lg"></iconify-icon>
+                <span class="text-sm font-medium">Analytics</span>
+            </button>
+            <button onclick="switchSection('commission', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-slate-600 hover:bg-slate-100">
+                <iconify-icon icon="lucide:wallet" class="text-lg"></iconify-icon>
+                <span class="text-sm font-medium">Commissions</span>
+            </button>
+            <button onclick="switchSection('loyalty', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-slate-600 hover:bg-slate-100">
+                <iconify-icon icon="lucide:gem" class="text-lg"></iconify-icon>
+                <span class="text-sm font-medium">Loyalty Program</span>
+            </button>
+
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider px-2 mt-8 mb-2">System</p>
+            <button onclick="switchSection('sms', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors text-slate-600 hover:bg-slate-100">
+                <iconify-icon icon="lucide:message-square" class="text-lg"></iconify-icon>
+                <span class="text-sm font-medium">SMS Settings</span>
+            </button>
+        </nav>
+
+        <div class="p-4 border-t border-slate-200">
+            <div class="flex items-center gap-3 px-2">
+                <div class="w-8 h-8 rounded-full bg-[#1E3A5F] flex items-center justify-center text-white text-xs font-bold">JD</div>
+                <div class="overflow-hidden">
+                    <p class="text-sm font-bold text-slate-900 truncate">John Doe</p>
+                    <p class="text-xs text-slate-500 truncate">Manager (Wynwood)</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-[240px] min-h-screen">
+        <!-- Top Header -->
+        <header class="h-16 border-b border-slate-200 bg-white sticky top-0 z-40 px-8 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <nav class="text-sm text-slate-500 flex items-center gap-2">
+                    <span>Admin</span>
+                    <iconify-icon icon="lucide:chevron-right" class="text-xs"></iconify-icon>
+                    <span id="breadcrumb-active" class="text-slate-900 font-medium">Overview</span>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative">
+                    <iconify-icon icon="lucide:search" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></iconify-icon>
+                    <input type="text" placeholder="Search clients or bookings..." class="pl-10 pr-4 py-2 bg-slate-100 border-transparent rounded-md text-sm focus:bg-white focus:ring-2 focus:ring-[#1E3A5F] outline-none w-64 transition-all">
+                </div>
+                <button class="relative text-slate-600 hover:text-[#1E3A5F]">
+                    <iconify-icon icon="lucide:bell" class="text-xl"></iconify-icon>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-[#F59E0B] text-white text-[10px] flex items-center justify-center rounded-full font-bold">3</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="p-8">
+            
+            <!-- SECTION: OVERVIEW -->
+            <section id="overview" class="section-panel active space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border border-slate-100">
+                        <p class="text-sm text-slate-500 font-medium">Bookings Today</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1">42</h3>
+                        <p class="text-xs text-green-600 mt-2 flex items-center gap-1">
+                            <iconify-icon icon="lucide:trending-up"></iconify-icon> +12% from yesterday
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border border-slate-100">
+                        <p class="text-sm text-slate-500 font-medium">Daily Revenue</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1">$1,840.00</h3>
+                        <p class="text-xs text-green-600 mt-2 flex items-center gap-1">
+                            <iconify-icon icon="lucide:trending-up"></iconify-icon> +5% from last week
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border border-slate-100">
+                        <p class="text-sm text-slate-500 font-medium">No-Show Rate</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1">2.4%</h3>
+                        <p class="text-xs text-red-600 mt-2 flex items-center gap-1">
+                            <iconify-icon icon="lucide:trending-up"></iconify-icon> +0.2%
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border border-slate-100">
+                        <p class="text-sm text-slate-500 font-medium">Active Barbers</p>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-1">10 / 12</h3>
+                        <div class="w-full bg-slate-200 h-1.5 rounded-full mt-4">
+                            <div class="bg-[#F59E0B] h-1.5 rounded-full" style="width: 83%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 bg-slate-50 p-6 rounded-lg shadow-sm border border-slate-100">
+                        <div class="flex items-center justify-between mb-6">
+                            <h4 class="font-bold text-slate-900">Revenue Overview</h4>
+                            <select class="text-xs border-slate-200 rounded-md bg-white p-1">
+                                <option>Last 7 Days</option>
+                                <option>Last 30 Days</option>
+                            </select>
+                        </div>
+                        <canvas id="revenueChart" height="100"></canvas>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-sm border border-slate-100">
+                        <h4 class="font-bold text-slate-900 mb-4">Recent Bookings</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-white rounded-md border border-slate-100">
+                                <div>
+                                    <p class="text-sm font-bold">Marcus V.</p>
+                                    <p class="text-xs text-slate-500">Skin Fade w/ Carlos</p>
+                                </div>
+                                <span class="text-xs font-bold text-[#1E3A5F]">2:30 PM</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white rounded-md border border-slate-100">
+                                <div>
+                                    <p class="text-sm font-bold">Julian R.</p>
+                                    <p class="text-xs text-slate-500">Beard Trim w/ Alex</p>
+                                </div>
+                                <span class="text-xs font-bold text-[#1E3A5F]">3:00 PM</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white rounded-md border border-slate-100">
+                                <div>
+                                    <p class="text-sm font-bold">David L.</p>
+                                    <p class="text-xs text-slate-500">Classic Cut w/ Sam</p>
+                                </div>
+                                <span class="text-xs font-bold text-[#1E3A5F]">3:15 PM</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-4 py-2 text-sm font-medium text-[#1E3A5F] hover:underline">View all schedule</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: QUEUE -->
+            <section id="queue" class="section-panel space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-slate-900">Live Walk-in Queue</h2>
+                    <button class="bg-[#1E3A5F] text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+                        <iconify-icon icon="lucide:plus"></iconify-icon> Add Walk-in
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Waiting -->
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Waiting (4)
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-amber-500">
+                                <div class="flex justify-between items-start">
+                                    <p class="font-bold">Kevin Smith</p>
+                                    <span class="text-xs text-slate-400">12 min ago</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Any Barber • Haircut</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-amber-500">
+                                <div class="flex justify-between items-start">
+                                    <p class="font-bold">Leo G.</p>
+                                    <span class="text-xs text-slate-400">25 min ago</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Request: Carlos • Beard</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- In Chair -->
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> In Chair (6)
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-500">
+                                <div class="flex justify-between items-start">
+                                    <p class="font-bold">Mike T.</p>
+                                    <span class="text-xs text-blue-600 font-bold">15m left</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Barber: Alex • Full Service</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Completed -->
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                        <h3 class="text-sm font-bold text-slate-500 uppercase mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500"></span> Done Today (28)
+                        </h3>
+                        <div class="space-y-3 opacity-60">
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <p class="font-bold">Chris P.</p>
+                                <p class="text-xs text-slate-500 mt-1">Paid $45.00 via Card</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: CLIENTS -->
+            <section id="clients" class="section-panel space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-slate-900">Client Database</h2>
+                    <div class="flex gap-2">
+                        <button class="px-4 py-2 border border-slate-200 rounded-md text-sm font-medium hover:bg-slate-50">Export CSV</button>
+                        <button class="bg-[#1E3A5F] text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90">Add New Client</button>
+                    </div>
+                </div>
+                <div class="bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-100 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-4 font-bold text-slate-700">Client Name</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Phone</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Last Visit</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Total Spent</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Loyalty Status</th>
+                                <th class="px-6 py-4 font-bold text-slate-700"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="bg-white hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 font-medium">Robert Fox</td>
+                                <td class="px-6 py-4 text-slate-500">(305) 555-0123</td>
+                                <td class="px-6 py-4 text-slate-500">Oct 12, 2023</td>
+                                <td class="px-6 py-4 font-bold">$420.00</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 bg-amber-100 text-amber-700 rounded-full text-[10px] font-bold uppercase">Gold</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-[#1E3A5F]"><iconify-icon icon="lucide:more-horizontal"></iconify-icon></button>
+                                </td>
+                            </tr>
+                            <tr class="bg-white hover:bg-slate-50 transition-colors">
+                                <td class="px-6 py-4 font-medium">Cody Fisher</td>
+                                <td class="px-6 py-4 text-slate-500">(786) 555-0198</td>
+                                <td class="px-6 py-4 text-slate-500">Oct 10, 2023</td>
+                                <td class="px-6 py-4 font-bold">$125.00</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 bg-slate-200 text-slate-600 rounded-full text-[10px] font-bold uppercase">Silver</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-[#1E3A5F]"><iconify-icon icon="lucide:more-horizontal"></iconify-icon></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECTION: ANALYTICS -->
+            <section id="analytics" class="section-panel space-y-8">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-slate-900">Advanced Analytics</h2>
+                    <div class="flex gap-2">
+                        <input type="date" class="text-sm border-slate-200 rounded-md p-2">
+                        <input type="date" class="text-sm border-slate-200 rounded-md p-2">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-bold mb-6">Bookings vs No-Shows</h4>
+                        <canvas id="noShowChart"></canvas>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-bold mb-6">Revenue by Service Type</h4>
+                        <canvas id="serviceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: COMMISSION -->
+            <section id="commission" class="section-panel space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900">Barber Commissions</h2>
+                <div class="bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-100 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-4 font-bold text-slate-700">Barber</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Total Sales</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Commission %</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Tips (Direct)</th>
+                                <th class="px-6 py-4 font-bold text-slate-700">Payout Due</th>
+                                <th class="px-6 py-4 font-bold text-slate-700"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="bg-white">
+                                <td class="px-6 py-4 font-medium">Carlos Mendez</td>
+                                <td class="px-6 py-4">$2,450.00</td>
+                                <td class="px-6 py-4">60%</td>
+                                <td class="px-6 py-4">$520.00</td>
+                                <td class="px-6 py-4 font-bold text-green-600">$1,470.00</td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="bg-[#1E3A5F] text-white px-3 py-1 rounded text-xs">Pay Out</button>
+                                </td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-6 py-4 font-medium">Alex Rivera</td>
+                                <td class="px-6 py-4">$1,980.00</td>
+                                <td class="px-6 py-4">55%</td>
+                                <td class="px-6 py-4">$380.00</td>
+                                <td class="px-6 py-4 font-bold text-green-600">$1,089.00</td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="bg-[#1E3A5F] text-white px-3 py-1 rounded text-xs">Pay Out</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECTION: LOYALTY -->
+            <section id="loyalty" class="section-panel space-y-8">
+                <h2 class="text-2xl font-bold text-slate-900">Loyalty Program Management</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-bold mb-4">Point Rules</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Points per $1 Spent</label>
+                                <input type="number" value="1" class="w-full p-2 border border-slate-200 rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Signup Bonus Points</label>
+                                <input type="number" value="50" class="w-full p-2 border border-slate-200 rounded-md">
+                            </div>
+                            <button class="bg-[#1E3A5F] text-white px-4 py-2 rounded-md text-sm font-medium w-full">Save Rules</button>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <h4 class="font-bold mb-4">Reward Tiers</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-200">
+                                <span class="text-sm">Free Beard Trim</span>
+                                <span class="font-bold text-[#F59E0B]">100 pts</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-200">
+                                <span class="text-sm">20% Off Any Service</span>
+                                <span class="font-bold text-[#F59E0B]">250 pts</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white rounded border border-slate-200">
+                                <span class="text-sm">Free Premium Haircut</span>
+                                <span class="font-bold text-[#F59E0B]">500 pts</span>
+                            </div>
+                            <button class="text-[#1E3A5F] text-sm font-bold flex items-center gap-1 mt-2">
+                                <iconify-icon icon="lucide:plus-circle"></iconify-icon> Add New Tier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: SMS -->
+            <section id="sms" class="section-panel space-y-8">
+                <h2 class="text-2xl font-bold text-slate-900">SMS Notification Settings</h2>
+                <div class="max-w-2xl space-y-6">
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <div>
+                            <p class="font-bold">Booking Confirmations</p>
+                            <p class="text-xs text-slate-500">Send SMS immediately after booking</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1E3A5F]"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <div>
+                            <p class="font-bold">Appointment Reminders</p>
+                            <p class="text-xs text-slate-500">Send SMS 2 hours before appointment</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1E3A5F]"></div>
+                        </label>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-bold text-slate-700">Reminder Template</label>
+                        <textarea class="w-full p-4 border border-slate-200 rounded-lg text-sm bg-slate-50 h-32" placeholder="Hi {{name}}, this is a reminder for your appointment at South Beach Cuts with {{barber}} today at {{time}}. See you soon!">Hi {{name}}, this is a reminder for your appointment at South Beach Cuts with {{barber}} today at {{time}}. See you soon!</textarea>
+                        <p class="text-[10px] text-slate-400">Available tags: {{name}}, {{barber}}, {{time}}, {{date}}, {{location}}</p>
+                    </div>
+                    <button class="bg-[#1E3A5F] text-white px-6 py-2 rounded-md font-medium shadow-sm hover:opacity-90">Update SMS Settings</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Section Switching Logic
+        function switchSection(sectionId, element) {
+            // Update breadcrumb
+            document.getElementById('breadcrumb-active').innerText = element.innerText.trim();
+
+            // Hide all panels
+            document.querySelectorAll('.section-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Show target panel
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update sidebar links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Re-render charts if needed (specific to overview/analytics)
+            if(sectionId === 'overview' || sectionId === 'analytics') {
+                // Charts are persistent in this demo, but would re-init in a real SPA
+            }
+        }
+
+        // Initialize Charts
+        window.onload = function() {
+            // Revenue Chart
+            const ctxRev = document.getElementById('revenueChart').getContext('2d');
+            new Chart(ctxRev, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: [1200, 1500, 1100, 1800, 2200, 2800, 1840],
+                        borderColor: '#1E3A5F',
+                        backgroundColor: 'rgba(30, 58, 95, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            // No Show Chart
+            const ctxNoShow = document.getElementById('noShowChart').getContext('2d');
+            new Chart(ctxNoShow, {
+                type: 'bar',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [
+                        { label: 'Bookings', data: [210, 235, 220, 245], backgroundColor: '#1E3A5F' },
+                        { label: 'No-Shows', data: [5, 8, 4, 6], backgroundColor: '#F59E0B' }
+                    ]
+                }
+            });
+
+            // Service Chart
+            const ctxService = document.getElementById('serviceChart').getContext('2d');
+            new Chart(ctxService, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Haircut', 'Beard', 'Combo', 'VIP'],
+                    datasets: [{
+                        data: [55, 15, 20, 10],
+                        backgroundColor: ['#1E3A5F', '#F59E0B', '#64748B', '#0F172A']
+                    }]
+                }
+            });
+        };
+    </script>
+</body>
+</html>
